@@ -1,4 +1,5 @@
 <?
+$modx->addPackage('cartridges', $modx->getOption('core_path').'components/cartridges/model/','modx_cartridges_');
 $row = $modx->getObject('CdbCartridges', $cli_inn);
 if(!$row) {
 $row = $modx->newObject('CdbCartridges');}
