@@ -38,7 +38,7 @@ $row = $modx->getObject('CdbCartridges', array('cartno' => $crt_num));
 
 if(!$row) {
   $row = $modx->newObject('CdbCartridges');
-  print $crt_num."<br>";
+  print $crt_num." | ".$crt_date."<br>";
 } else {
   print $crt_num." - dublicate<br>";
   /*print "<pre>";
