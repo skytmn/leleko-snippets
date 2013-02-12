@@ -49,16 +49,13 @@ if(!$row) {
 $status = $modx->getObject('CdbCartridgesStatus', array('cartno' => $crt_num,
 							'status' => $crt_status,
 							'date'   => $crt_date));
-print '<pre>';
-print_r($status->toArray());
-die();
 
 if (!$status) {
   $statusExisting = '';
   $status = $modx->newObject('CdbCartridgesStatus');
-  $status->fromArray('cartno' => $crt_num,
+  $status->fromArray(array('cartno' => $crt_num,
 		     'status' => $crt_status,
-		     'date' => $crt_date);
+		     'date' => $crt_date));
 
   $statusDateTime = strtotime($crt_date);
   $currentStatusDateTime = strtotime($row->get('date'));
