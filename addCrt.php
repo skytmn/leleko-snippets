@@ -56,11 +56,12 @@ if (!$status) {
   $status->fromArray(array('cartno' => $crt_num,
 		     'status' => $crt_status,
 		     'date' => $crt_date));
+  $status->save();
 
   $statusDateTime = strtotime($crt_date);
   $currentStatusDateTime = strtotime($row->get('date'));
   
-  if ($statusDateTime > $currentStatusDateTime) {
+  if (!$currentStatusDateTime || $statusDateTime > $currentStatusDateTime) {
   	$row->set('Status', $crt_status);
   	$row->set('date',   $crt_date, );
   }
