@@ -71,7 +71,7 @@ $cartParams = array('inn' => $cli_inn,
 		  'Zapravil' => $crt_zapravil
 		  );
 
-$row->fromArray();
+$row->fromArray($cartParams);
 $row->save();
 
 		} 
