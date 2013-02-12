@@ -55,6 +55,16 @@ if (!$status) {
   $status->fromArray('cartno' => $crt_num,
 		     'status' => $crt_status,
 		     'date' => $crt_date);
+
+  $statusDateTime = strtotime($crt_date);
+  $currentStatusDateTime = strtotime($row->get('date'));
+  
+  if ($statusDateTime > $currentStatusDateTime) {
+  	$row->set('Status', $crt_status);
+  	$row->set('date',   $crt_date, );
+  }
+
+  
 } else {
   $statusExisting = '. Status already existing';
 }
