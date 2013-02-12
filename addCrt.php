@@ -24,7 +24,7 @@ $crt_status = (string) $Cartridgy->Status;
 
 $crt_date = (string) $Cartridgy->Date;
 	if ($crt_date == '00.00.0000') {
-	  $crt_date = '0000.00.00 00:00:00';
+	  $crt_date = '2000.01.01 00:00:00';
 	} else {
 	  $crt_date_arr = explode('.', $crt_date);
 	  $crt_date = $crt_date_arr[2].'-'.$crt_date_arr[1].'-'.$crt_date_arr[0].' 00:00:00';
