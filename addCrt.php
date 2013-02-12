@@ -21,7 +21,11 @@ $crt_vozvrat = (string) $Cartridgy->Vozvrat;
 $crt_pogarantii = (string) $Cartridgy->PoGarantii;
 $crt_document = (string) $Cartridgy->Document;
 $crt_status = (string) $Cartridgy->Status;
-$crt_date = (timestamp) $Cartridgy->Date;
+
+$crt_date = (string) $Cartridgy->Date;
+$crt_date_arr = explode('.', $crt_date);
+$crt_date = strtotime($crt_date_arr[2].'-'.$crt_date_arr[1].'-'.$crt_date_arr[0]);
+
 $crt_manager = (string) $Cartridgy->Manager;
 $crt_zapravil = (string) $Cartridgy->Zapravil;
 //$cartr = $modx->getObject('CdbCartridges', 1); // цифра - это id-шник
@@ -31,8 +35,16 @@ $crt_zapravil = (string) $Cartridgy->Zapravil;
 //echo "</pre>";
 //die();
 $row = $modx->getObject('CdbCartridges', array('cartno' => $crt_num));
+
 if(!$row) {
   $row = $modx->newObject('CdbCartridges');
+  print $crt_num."<br>";
+} else {
+  print $crt_num."<br>";
+  print "<pre>";
+  print_r($row->toArray());
+  print "</pre>";
+  die();
 }
 
 $cartParams = array('inn' => $cli_inn, 
