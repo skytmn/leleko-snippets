@@ -23,11 +23,17 @@ $crt_document = (string) $Cartridgy->Document;
 $crt_status = (string) $Cartridgy->Status;
 
 $crt_date = (string) $Cartridgy->Date;
-$crt_date_arr = explode('.', $crt_date);
-$crt_date = strtotime($crt_date_arr[2].'-'.$crt_date_arr[1].'-'.$crt_date_arr[0]);
+	if ($crt_date == '00.00.0000') {
+	  $crt_date = '0000.00.00 00:00:00';
+	} else {
+	  $crt_date_arr = explode('.', $crt_date);
+	  $crt_date = $crt_date_arr[2].'-'.$crt_date_arr[1].'-'.$crt_date_arr[0].' 00:00:00';
+	}
 
 $crt_manager = (string) $Cartridgy->Manager;
 $crt_zapravil = (string) $Cartridgy->Zapravil;
+
+
 //$cartr = $modx->getObject('CdbCartridges', 1); // цифра - это id-шник
 //$obj = $cartr->toArray();
 //echo "<pre>";
@@ -38,9 +44,9 @@ $row = $modx->getObject('CdbCartridges', array('cartno' => $crt_num));
 
 if(!$row) {
   $row = $modx->newObject('CdbCartridges');
-  print $crt_num." | ".$crt_date."<br>";
+  print $crt_num." | ".$crt_date." | ";
 } else {
-  print $crt_num." - dublicate<br>";
+  print $crt_num." - dublicate";
   /*print "<pre>";
   print_r($row->toArray());
   print "</pre>";
@@ -73,9 +79,10 @@ $cartParams = array('inn' => $cli_inn,
 
 $row->fromArray($cartParams);
 $row->save();
+print "| ".$row->get('cartno')." | ".$row->get('date')."<br>";
+
 
 		} 
-
 
 	} 
 }
