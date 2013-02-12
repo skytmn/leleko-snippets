@@ -40,11 +40,11 @@ if(!$row) {
   $row = $modx->newObject('CdbCartridges');
   print $crt_num."<br>";
 } else {
-  print $crt_num."<br>";
-  print "<pre>";
+  print $crt_num." - dublicate<br>";
+  /*print "<pre>";
   print_r($row->toArray());
   print "</pre>";
-  die();
+  die();*/
 }
 
 $cartParams = array('inn' => $cli_inn, 
