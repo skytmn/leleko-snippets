@@ -43,14 +43,20 @@ $crt_zapravil = (string) $Cartridgy->Zapravil;
 $row = $modx->getObject('CdbCartridges', array('cartno' => $crt_num));
 
 if(!$row) {
-  $row = $modx->newObject('CdbCartridges');
-  print $crt_num." | ".$crt_date." | ";
+  $row = $modx->newObject('CdbCartridges');  
+}
+
+$status = $modx->getObject('CdbCartridgesStatus', array('cartno' => $crt_num,
+							'status' => $crt_status,
+							'date'   => $crt_date));
+if (!$status) {
+  $statusExisting = '';
+  $status = $modx->newObject('CdbCartridgesStatus');
+  $status->fromArray('cartno' => $crt_num,
+		     'status' => $crt_status,
+		     'date' => $crt_date);
 } else {
-  print $crt_num." - dublicate";
-  /*print "<pre>";
-  print_r($row->toArray());
-  print "</pre>";
-  die();*/
+  $statusExisting = '. Status already existing';
 }
 
 $cartParams = array('inn' => $cli_inn, 
@@ -71,15 +77,14 @@ $cartParams = array('inn' => $cli_inn,
 		  'Vozvrat' => $crt_vozvrat,
 		  'PoGarantii' => $crt_pogarantii,
 		  'Document' => $crt_document,
-		  'Status' => $crt_status,
-		  'date' => $crt_date, 
 		  'Manager' => $crt_manager,
 		  'Zapravil' => $crt_zapravil
 		  );
 
 $row->fromArray($cartParams);
 $row->save();
-print "| ".$row->get('cartno')." | ".$row->get('date')."<br>";
+
+echo $row->get('cartno').", status: ".$status->get('status')." (".$status->get('date').")".$statusExisting."<br>";
 
 
 		} 
