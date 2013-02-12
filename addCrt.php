@@ -1,4 +1,35 @@
 <?
+foreach($Client_data->Cartridges->Cartridge as $Cartridgy) {
+
+$cli_inn = (int) $Client_data->ClientINN;
+$crt_id = (int) $Cartridgy->id_crt;
+$crt_num = (int) $Cartridgy->Number;
+$crt_model = (string) $Cartridgy->Model;
+$crt_unit = (string) $Cartridgy->Podrazdelenie;
+$crt_zapravka = (string) $Cartridgy->Zapravka;
+$crt_vosstanovlenie = (string) $Cartridgy->Vosstonovlenie;
+$crt_zamenaopc = (string) $Cartridgy->ZamenaBarabanaOPC;
+$crt_zamenarakela = (string) $Cartridgy->ZamenaRakelaVB;
+$crt_zamenavalazar = (string) $Cartridgy->ZamenaValaZariada;
+$crt_zamenadozlezv = (string) $Cartridgy->ZamenaDozLezvia;
+$crt_zamenamagvala = (string) $Cartridgy->ZamenaMagnitnogoVala;
+$crt_zamenaproavrol = (string) $Cartridgy->ZamenaProavlRolika;
+$crt_zamenachipa = (string) $Cartridgy->ZamenaChipa;
+$crt_zamenacorpkart = (string) $Cartridgy->ZamenaCorpusaCartridga;
+$crt_zamenaroltonera = (string) $Cartridgy->ZamenaRolikaPodachiTonera;
+$crt_vozvrat = (string) $Cartridgy->Vozvrat;
+$crt_pogarantii = (string) $Cartridgy->PoGarantii;
+$crt_document = (string) $Cartridgy->Document;
+$crt_status = (string) $Cartridgy->Status;
+$crt_date = (timestamp) $Cartridgy->Date;
+$crt_manager = (string) $Cartridgy->Manager;
+$crt_zapravil = (string) $Cartridgy->Zapravil;
+//$cartr = $modx->getObject('CdbCartridges', 1); // цифра - это id-шник
+//$obj = $cartr->toArray();
+//echo "<pre>";
+//print_r($obj);
+//echo "</pre>";
+//die();
 $row = $modx->getObject('CdbCartridges', array('cartno' => $crt_num));
 if(!$row) {
   $row = $modx->newObject('CdbCartridges');
@@ -30,3 +61,11 @@ $cartParams = array('inn' => $cli_inn,
 
 $row->fromArray();
 $row->save();
+
+		} 
+
+
+	} 
+}
+echo "<br>";
+echo "<b><small>Данные обработаны.</small></b>";
