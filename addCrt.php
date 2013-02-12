@@ -53,7 +53,7 @@ $status = $modx->getObject('CdbCartridgesStatus', array('cartno' => $crt_num,
 if (!$status) {
   $statusExisting = '';
   $status = $modx->newObject('CdbCartridgesStatus');
-  $status->fromArray(array('cartno' => $crt_num,
+ // $status->fromArray(array('cartno' => $crt_num,
 		     'status' => $crt_status,
 		     'date' => $crt_date));
   $status->save();
