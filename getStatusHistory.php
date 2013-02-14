@@ -7,7 +7,15 @@ $c->where('cartno' => $crt_num);
 $statuses = $modx->getCollection('CdbCartridgesStatus', $c);
 
 foreach ($statuses as $status) {
-  $output .= "<p>Статус <b>" . $status->get('status') .
-  "</b>. Изменен: " . date("d.m.Y", strtotime($status->get('data'))) . "</p>\n";
+  $statusArr = $status->toArray();
+  $statusArr['date'] = date("d.m.Y", strtotime($statusArr['date']));
+  $output .= $modx->getChunk('tpl.statusesList', $statusArr);
+  
+  /*
+  Чанк tpl.statusesList:
+  
+  <p>Статус <b> [[+status]]</b>. Изменен: [[+date]]</p>
+  
+  */
 }
 return $output;
